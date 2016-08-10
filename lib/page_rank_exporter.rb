@@ -9,9 +9,9 @@ class PageRankExporter
     return if grouped_counts.empty?
     create_dir
 
-    CSV.open(path_filename, "w+", headers: true, headers: ["Page", "RM Properties Found"]) do |csv|
-      grouped_counts.each do |page_record|
-        csv << page_record
+    CSV.open(path_filename, "w+", headers: true) do |csv|
+      grouped_counts.each do |elem|
+        csv << elem
       end
     end
   end

@@ -97,11 +97,33 @@ class Comparer
     Summarizer.new(summary_hash).export
   end
 
+  # Returns an array of arrays with page rank and number of properties on that page. ["Page 1", "1 RM properties"]
   def grouped_counts
     counted = Hash.new(0)
     output.each { |h| counted[h[:page]] += 1 }
 
-    counted
+    # Delete Not Found before sorting
+    deleted = counted.delete("Not Found")
+
+    # Sort by the keys.
+    counted = Hash[counted.sort_by{|k,v| k}]
+
+    # Add the Not Found k,v pair back in
+    counted["Not Found"] = deleted
+
+    #Some hacky text formatting to provide [["Page 1", "1 RM properties"], ["Not Found", "52 RM properties"]] to PageRankExporter
+    counted.to_a.map! do |arr|
+      arr.map! do |el|
+        if el == "Not Found"
+          "Not Found"
+        elsif arr.index(el) == 0
+          "Page #{el}"
+        elsif arr.index(el) == 1
+          "#{el} RM properties"
+        end
+      end
+    end
+
   end
 
   def export_page_ranking(grouped_counts)

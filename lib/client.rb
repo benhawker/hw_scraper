@@ -1,5 +1,5 @@
 class Client
-  # http://www.homeaway.com.sg/vacation-rentals/italy/rome?page=1
+  # Sample url: http://www.homeaway.com.sg/vacation-rentals/italy/rome?page=1
   BASE_URL = "http://www.homeaway.com.sg/vacation-rentals/"
 
   attr_reader  :page
