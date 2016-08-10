@@ -13,6 +13,8 @@ class Comparer
     not_found
 
     export_summary
+    export_page_ranking(grouped_counts)
+    export_raw(output)
   end
 
   private
@@ -75,6 +77,10 @@ class Comparer
     ((number_of_rm_properties_found.to_f / number_of_hw_properties.to_f) * 100).round(2)
   end
 
+  def export_raw(output)
+    RawExporter.new(output).export
+  end
+
   def summary_hash
     {
       :type => "Rome - HomeAway Search Result Title Comparison",
@@ -89,5 +95,16 @@ class Comparer
 
   def export_summary
     Summarizer.new(summary_hash).export
+  end
+
+  def grouped_counts
+    counted = Hash.new(0)
+    output.each { |h| counted[h[:page]] += 1 }
+
+    counted
+  end
+
+  def export_page_ranking(grouped_counts)
+    PageRankExporter.new(grouped_counts).export
   end
 end
