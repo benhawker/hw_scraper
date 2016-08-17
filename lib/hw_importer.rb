@@ -6,8 +6,8 @@ class HWImporter
   end
 
   def import
-    # Hardcoded the max page for Rome search results
-    1.upto(347).each do |page_number|
+    # Hardcoded the max page for Rome search results (347)
+    1.upto(100).each do |page_number|
       page = get_page(page_number)
 
       #Defaults to 20 rooms per page.

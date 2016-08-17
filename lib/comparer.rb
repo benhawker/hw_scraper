@@ -14,6 +14,7 @@ class Comparer
 
     export_summary
     export_page_ranking(grouped_counts)
+    export_page_rank_graph(counts)
     export_raw(output)
   end
 
@@ -123,10 +124,28 @@ class Comparer
         end
       end
     end
-
   end
 
   def export_page_ranking(grouped_counts)
     PageRankExporter.new(grouped_counts).export
+  end
+
+  #TODO: Remove duplication from above.
+  def counts
+    # 1 upto max page (to be made available from hw_importer) - Another TODO.
+    counted = Hash[1.upto(100).map {|i| [i, 0]}]
+
+    #Erroring here. NoMethodError: undefined method `+' for nil:NilClass
+    output.each { |h| counted[h[:page].to_i] += 1 }
+
+    # Delete Not Found before sorting
+    deleted = counted.delete("Not Found")
+
+    # Sort by the keys - may not be necessary now.
+    counted = Hash[counted.sort_by{|k,v| k}]
+  end
+
+  def export_page_rank_graph(counts)
+    PageRankGraph.new(counts).build
   end
 end
