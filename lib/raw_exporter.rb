@@ -1,7 +1,8 @@
 class RawExporter
-  attr_reader :output
+  attr_reader :partner_name, :output
 
-  def initialize(output)
+  def initialize(partner_name, output)
+    @partner_name = partner_name
     @output = output
   end
 
@@ -19,11 +20,11 @@ class RawExporter
   private
 
   def path_filename
-    "#{path}raw_#{Date.today}.csv"
+    "#{path}/raw_#{Date.today}.csv"
   end
 
   def path
-    "results/"
+    "results/#{partner_name}/raw"
   end
 
   def create_dir

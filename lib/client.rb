@@ -1,10 +1,10 @@
 class Client
-  # Sample url: http://www.homeaway.com.sg/vacation-rentals/italy/rome?page=1
-  BASE_URL = "http://www.homeaway.com.sg/vacation-rentals/"
+  CITIES = YAML::load(File.open(File.join('config', 'cities.yml')))
 
-  attr_reader  :page
+  attr_reader :city, :page
 
-  def initialize(page=1)
+  def initialize(city, page=1)
+    @city = city
     @page = page
   end
 
@@ -16,9 +16,5 @@ class Client
 
   def http_client
     Mechanize.new
-  end
-
-  def url_builder
-    BASE_URL + "italy/rome" + "?" + "page=" + page.to_s
   end
 end

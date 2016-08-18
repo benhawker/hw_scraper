@@ -2,9 +2,11 @@ Scraping Page Rank Script
 
 ===================
 
-Results will be output to `results/`. The directory will be create dynamically by fileutils once the script runs.
+A work in progress as of August 2016.
 
-Currently just running this for Rome - which is hardcoded in.
+For both components you will require an input file, which must be loaded into `properties/`.
+
+Results will be output to `results/`. The directory will be create dynamically by fileutils once the script runs.
 
 
 ===================
@@ -15,6 +17,10 @@ Currently just running this for Rome - which is hardcoded in.
 require_relative 'scraper'
 
 Comparer.new.compare
+```
+
+```
+Report.generate
 ```
 
 ===================

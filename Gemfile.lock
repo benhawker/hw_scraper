@@ -1,11 +1,21 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (5.0.0.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    chronic (0.10.2)
+    concurrent-ruby (1.0.2)
     diff-lcs (1.2.5)
     domain_name (0.5.20160615)
       unf (>= 0.0.5, < 1.0.0)
+    gruff (0.7.0)
+      rmagick (~> 2.13, >= 2.13.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    i18n (0.7.0)
     mechanize (2.7.4)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
@@ -17,6 +27,7 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
+    minitest (5.9.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     nokogiri (1.6.8)
@@ -24,6 +35,7 @@ GEM
       pkg-config (~> 1.1.7)
     ntlm-http (0.1.1)
     pkg-config (1.1.7)
+    rmagick (2.15.4)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -37,17 +49,25 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
     webrobots (0.1.2)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  mechanize
+  activesupport (~> 5.0)
+  gruff (~> 0.7.0)
+  mechanize (~> 2.7, >= 2.7.4)
   rspec
+  whenever (~> 0.9.7)
 
 BUNDLED WITH
    1.12.5

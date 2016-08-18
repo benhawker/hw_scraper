@@ -1,10 +1,11 @@
 class PageRankGraph
-  PIXEL_WIDTH = 750
+  PIXEL_WIDTH = 1200
 
-  attr_reader :counts, :graph
+  attr_reader :partner_name, :counts, :graph
 
   #Presume class will accept hash of page to found count. { 1 => 0, 2 => 3, 3 => 4, etc.}
-  def initialize(counts, city)
+  def initialize(partner_name, counts)
+    @partner_name = partner_name
     @counts = counts
     @graph = Gruff::Bar.new(PIXEL_WIDTH)
   end
@@ -13,23 +14,20 @@ class PageRankGraph
     return if counts.empty?
     create_dir
 
-    build_x_axis
-    build_y_axis
+    determine_scale
     build_titles
     graph.write(File.join(path_filename))
   end
 
   private
 
-  def build_x_axis
-    determine_scale
-  end
-
-  def build_y_axis
-    graph.maximum_value = 20  # Declare a max value for the Y axis - i.e. max number of rooms per page.
+  def scale_y_axis(scale)
+    graph.maximum_value = 20 * scale
+    # Declare a max value for the Y axis - i.e. max number of rooms per page.
     # TODO = Pull this max per page from the client class once adding different partners.
+
     graph.minimum_value = 0   # Declare a min value for the Y axis
-    graph.y_axis_increment = 5  # Points shown on the Y x_axis
+    graph.y_axis_increment = 5 * scale  # Points shown on the Y x_axis
   end
 
   def determine_scale
@@ -38,13 +36,14 @@ class PageRankGraph
     elsif counts.size > 100
       scale = 10
     elsif counts.size > 50
-      scale = 3
+      scale = 5
     else counts.size
       scale = 1
     end
 
     scale_labels(scale)
     scale_data(scale)
+    scale_y_axis(scale)
   end
 
   def scale_data(scale)
@@ -75,17 +74,20 @@ class PageRankGraph
   end
 
   def build_titles
+    graph.label_stagger_height = 0 #Value can be increased to stagger the graph labels when overlapping.
+    graph.marker_font_size = 8
+    graph.hide_legend = true
     graph.x_axis_label = "Page Number"
     graph.y_axis_label = "Properties Found"
-    graph.title = "Rome Page Rank #{Date.today}"
+    graph.title = "Rome #{partner_name.capitalize} Page Rank -  #{Date.today}"
   end
 
   def path_filename
-    "#{path}page_rank_#{Date.today}.png"
+    "#{path}/page_rank_#{Date.today}.png"
   end
 
   def path
-    "results/graphs"
+    "results/#{partner_name}/graphs"
   end
 
   def create_dir

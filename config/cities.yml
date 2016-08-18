@@ -1,0 +1,50 @@
+# For each partner specified in partners.yml file specify valid cities for scraping and the relevant url.
+
+# This list provides a default, so if no cities are specified when
+# running the report all cities will be crawled for the given partner
+
+"homeaway":
+  # Define valid cities & their identifier at Homeaway.com
+  "rome": "italy/rome"
+
+"tujia":
+  # Define valid cities & their identifier at Tujia.com.
+  "london": "lundun_gongyu_r17/"
+  "singapore": "xinjiapo_gongyu_r104/"
+
+  #Japan
+  "tokyo": "dongjing_gongyu_r77/"
+  "osaka": "daban_gongyu_r147/"
+
+  #Korea
+  "seoul": "shouer_gongyu_r129/"
+  "jeju island": "jizhoudao_gongyu_r162/"
+
+  #Thailand
+  "pattaya": "batiya_gongyu_r41/"
+  "bangkok": "mangu_gongyu_r40/"
+  "chiang mai": "qingmai_gongyu_r128/"
+  "phuket": "pujidao_gongyu_r28/"
+
+  #Taiwan & HK
+  # "taipei": "taibei_gongyu_r138/"
+  # "hong kong": "xianggang_gongyu_r100/"
+
+  #USA
+  # "new york": "niuyue_gongyu_r30/"
+  # "san francisco": "jiujinshan_gongyu_r23/"
+  # "los angeles": "luoshanji_gongyu_r20/"
+
+  #Europe
+  # "barcelona": "basailuona_gongyu_r24/"
+  # "madrid": "madeli_gongyu_r16/"
+  # "paris": "bali_gongyu_r26/"
+  # "berlin": "bolin_gongyu_r21/"
+  # "rome": "luoma_gongyu_r15/"
+  # "budapest": "budapeisi_gongyu_r72/"
+  # "istanbul": "yisitanbuer_gongyu_r42/"
+  # "milan": "milan_gongyu_r27/"
+  # "florence": "foluolunsa_gongyu_r66/"
+  # "brussels": "bulusaier_gongyu_r97/"
+  # "vienna": "weiyena_gongyu_r70/"
+  # "nice": "nisi_gongyu_r18/"

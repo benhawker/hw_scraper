@@ -1,7 +1,8 @@
 class Summarizer
-  attr_reader :summary
+  attr_reader :partner_name, :summary
 
-  def initialize(summary)
+  def initialize(partner_name, summary)
+    @partner_name = partner_name
     @summary = summary
   end
 
@@ -19,11 +20,11 @@ class Summarizer
   private
 
   def path_filename
-    "#{path}summary_#{Date.today}.txt"
+    "#{path}/summary_#{Date.today}.txt"
   end
 
   def path
-    "results/"
+    "results/#{partner_name}/summaries"
   end
 
   def create_dir

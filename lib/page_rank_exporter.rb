@@ -1,7 +1,8 @@
 class PageRankExporter
-  attr_reader :grouped_counts
+  attr_reader :partner_name, :grouped_counts
 
-  def initialize(grouped_counts)
+  def initialize(partner_name, grouped_counts)
+    @partner_name = partner_name
     @grouped_counts = grouped_counts
   end
 
@@ -19,11 +20,11 @@ class PageRankExporter
   private
 
   def path_filename
-    "#{path}page_rank_#{Date.today}.csv"
+    "#{path}/page_rank_#{Date.today}.csv"
   end
 
   def path
-    "results/"
+    "results/#{partner_name}/page_rank_data"
   end
 
   def create_dir

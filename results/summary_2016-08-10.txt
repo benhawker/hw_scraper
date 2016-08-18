@@ -1,8 +1,0 @@
-type: Rome - HomeAway Search Result Title Comparison
-date: 2016-08-10
-number_of_hw_properties: 6940
-number_of_rm_properties: 526
-number_of_rm_properties_found: 266
-percentage_of_properties_found: 50.57
-percentage_of_roomorama_properties_out_of_total_on_hw: 3.83
-

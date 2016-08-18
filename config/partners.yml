@@ -1,0 +1,5 @@
+# Add new partners we are scraping to the partners.yml file here.
+# You also need to specify the corresponding cities to crawl & the url format in config/cities.yml
+
+- "homeaway"
+- "tujia"
