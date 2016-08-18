@@ -3,12 +3,12 @@
 # This list provides a default, so if no cities are specified when
 # running the report all cities will be crawled for the given partner
 
+# Define valid cities & their identifier at Homeaway.com
 "homeaway":
-  # Define valid cities & their identifier at Homeaway.com
   "rome": "italy/rome"
 
+# Define valid cities & their identifier at Tujia.com.
 "tujia":
-  # Define valid cities & their identifier at Tujia.com.
   "london": "lundun_gongyu_r17/"
   "singapore": "xinjiapo_gongyu_r104/"
 

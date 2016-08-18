@@ -33,8 +33,11 @@ class Comparer
   end
 
   def importer
-    partner = partner_name.capitalize.constantize
-    partner::Importer.new(city)
+    @importer ||= partner_namespace::Importer.new(city)
+  end
+
+  def partner_namespace
+    partner_name.capitalize.constantize
   end
 
   def export_summary
@@ -46,7 +49,7 @@ class Comparer
   end
 
   def export_page_rank_graph(counts)
-    PageRankGraph.new(partner_name, counts).build
+    PageRankGraph.new(partner_name, counts, importer.rooms_per_page).build
   end
 
   def export_raw(output)
@@ -145,8 +148,8 @@ class Comparer
 
   # Returns a hash with page as the key, properties found as the value {1=>1, 2=>0, 3=>0}
   def counts
-    # 1 upto max page (to be made available from importer) - Another TODO.
-    counted = Hash[1.upto(100).map {|i| [i, 0]}]
+    # 1 upto max page (made available from the relevant importer class)
+    counted = Hash[1.upto(importer.max_page).map {|i| [i, 0]}]
 
     # Delete Not Found - it's not needed for the graph.
     tmp = output.select { |h| h[:page] != "Not Found" }

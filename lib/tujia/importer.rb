@@ -13,8 +13,11 @@ module Tujia
         end
 
         page_number += 1
-        @max_page = page_number
       end
+
+      self.rooms_per_page = 20 #Store the rooms per page. Arbitrary number for now.
+      self.max_page = page_number
+
       property_titles
     end
     # Return [{"title"=>"牛津街考文特花园完美伦敦公寓", "page"=>1}, {"title"=>"1号曼斯里大厦三室两卫公寓", "page"=>1}]

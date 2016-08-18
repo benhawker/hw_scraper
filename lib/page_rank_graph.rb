@@ -1,12 +1,13 @@
 class PageRankGraph
   PIXEL_WIDTH = 1200
 
-  attr_reader :partner_name, :counts, :graph
+  attr_reader :partner_name, :counts, :rooms_per_page, :graph
 
   #Presume class will accept hash of page to found count. { 1 => 0, 2 => 3, 3 => 4, etc.}
-  def initialize(partner_name, counts)
+  def initialize(partner_name, counts, rooms_per_page)
     @partner_name = partner_name
     @counts = counts
+    @rooms_per_page = rooms_per_page
     @graph = Gruff::Bar.new(PIXEL_WIDTH)
   end
 
@@ -22,9 +23,8 @@ class PageRankGraph
   private
 
   def scale_y_axis(scale)
-    graph.maximum_value = 20 * scale
-    # Declare a max value for the Y axis - i.e. max number of rooms per page.
-    # TODO = Pull this max per page from the client class once adding different partners.
+    # Declare a max value for the Y axis - i.e. max number of rooms per page. Retrieved from the importer class for the partner.
+    graph.maximum_value = rooms_per_page * scale
 
     graph.minimum_value = 0   # Declare a min value for the Y axis
     graph.y_axis_increment = 5 * scale  # Points shown on the Y x_axis

@@ -1,18 +1,17 @@
 class Report
   # Entry point of this application.
-  # Pass a partners array and a cities array as args to narrow down the scope of the report.
+  # Pass a partners array as an args to narrow down the scope of the report.
 
-  def self.generate(partners=nil, cities=nil)
+  def self.generate(partners=nil)
     new(partners, cities).generate!
   end
 
   CITIES = YAML::load(File.open(File.join('config', 'cities.yml')))
   PARTNERS = YAML::load(File.open(File.join('config', 'partners.yml')))
 
-  attr_reader :partners, :cities
+  attr_reader :partners
 
-  def initialize(partners=nil, cities=nil)
-    @cities = cities || CITIES.keys
+  def initialize(partners=nil)
     @partners = partners || PARTNERS
   end
 
@@ -20,7 +19,6 @@ class Report
     raise InvalidPartnerRequested.new(partners) unless valid_partners?(partners)
 
     partners.each do |partner|
-      # TODO - Incorporate ability to pass selected cities.
       CITIES[partner].keys.each do |city|
         raise InvalidCityForPartner.new(partner, city) unless valid_city_for_partner?(partner, city)
 

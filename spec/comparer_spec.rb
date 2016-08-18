@@ -11,18 +11,15 @@ RSpec.describe Comparer do
     before do
       allow_any_instance_of(described_class).to receive(:rm_properties).and_return(rm_properties)
       allow_any_instance_of(described_class).to receive(:partner_properties).and_return(partner_properties)
+
+      Tujia::Importer.any_instance.stub(:max_page).and_return(3)
+      Tujia::Importer.any_instance.stub(:rooms_per_page).and_return(20)
     end
 
     it "correctly populates the output" do
       expected_result = [{:rm_id=>"1", :title=>"title_1", :page=>"Not Found"}, {:rm_id=>"2", :title=>"title_2", :page=>"Not Found"}]
       subject = described_class.new(partner, city)
-
-      puts subject
-
       subject.compare
-
-      puts subject.output
-
       expect(subject.output).to eq (expected_result)
     end
   end

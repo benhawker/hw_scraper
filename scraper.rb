@@ -7,7 +7,6 @@ require "fileutils"
 require "gruff"
 require "yaml"
 
-
 require_relative "lib/client"
 require_relative "lib/importer"
 require_relative "lib/rm_importer"
