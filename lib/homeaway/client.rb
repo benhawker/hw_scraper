@@ -1,3 +1,4 @@
+# Homeaway::Client: see top level +Client+ class
 module Homeaway
   class Client < ::Client
 

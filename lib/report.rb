@@ -1,8 +1,16 @@
-class Report
-  # Entry point of this application.
-  # Pass a partners array as an args to narrow down the scope of the report.
-  # To narrow down the cities selected please amend the cities.yml before requiring the application.
+# Report: the entry point of this application for a user
+#
+# Pass a partners array as an args to narrow down the scope of the report.
+# To narrow down the cities for each partner please amend the cities.yml before requiring the application (through commenting or deleting as appropriate).
+#
+# Usage:
+#
+#   Report.generate
+#
+# ...or with a specific partner (or partners)
+#   Report.generate(["tujia"])
 
+class Report
   def self.generate(partners=nil)
     new(partners).generate!
   end

@@ -1,3 +1,4 @@
+# Tujia::Client: see top level +Client+ class
 module Tujia
   class Client < ::Client
 

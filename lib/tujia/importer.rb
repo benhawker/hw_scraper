@@ -1,11 +1,15 @@
+# Tujia::Importer: see top level +Importer+ class
 module Tujia
   class Importer < ::Importer
 
     def import
+      # Don't just silently fail collecting titles if the page structure changes on the partner site.
+      raise PageStructureChanged.new("Tujia") if get_page(1).css("#idForMap > div > ul > li > div > div.main-cont > h2 > a").empty?
+
       page_number = 1
 
-      until get_page(page_number).css("#idForMap > div > div.house-main-info > h2 > a").empty?
-        links = get_page(page_number).css("#idForMap > div > div.house-main-info > h2 > a")
+      until get_page(page_number).css("#idForMap > div > ul > li > div > div.main-cont > h2 > a").empty?
+        links = get_page(page_number).css("#idForMap > div > ul > li > div > div.main-cont > h2 > a")
 
         links.each do |link|
           property_title = link.attributes["title"].value

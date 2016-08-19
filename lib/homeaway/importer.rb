@@ -1,10 +1,15 @@
+# Homeaway::Importer: see top level +Importer+ class
 module Homeaway
   class Importer < ::Importer
 
     def import
+      # Don't just silently fail collecting titles if the page structure changes on the partner site.
+      raise PageStructureChanged.new("Homeaway") if get_page(1).css("#space-1 > div.data.col-sm-7 > div > div.details.primary > h4").empty?
+
       # Get the first page and get the button specify the final page. A little brittle but working for now.
       last_page_number = get_page(1).css("#paginator > div > div > ul > li:nth-child(6) > a").text.to_i
 
+      # 1.upto(last_page_number).each do |page_number|
       1.upto(last_page_number).each do |page_number|
         page = get_page(page_number)
 

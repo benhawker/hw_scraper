@@ -1,3 +1,14 @@
+# Comparer: the Comparer class does the bulk of the analysis of the data imported.
+#
+# Usage:
+#   Comparer.new("tujia", "london").compare
+#
+# The +Comparer+ class instantiates the importer (both Rm and Parter variants).
+# The public compare method wraps a number of private methods with determine which properties we
+# find on the partner site and where, or indeed whether they were not found.
+#
+# It then exports the outputs via the exporter classes.
+
 class Comparer
   attr_reader :city, :partner_name, :rm_properties, :partner_properties, :output
   attr_accessor :number_of_rm_properties_found
@@ -6,8 +17,8 @@ class Comparer
     @city = city
     @partner_name = partner_name
 
-    @rm_properties = rm_properties
-    @partner_properties = partner_properties
+    @rm_properties = rm_props
+    @partner_properties = partner_props
 
     @output = []
   end
@@ -26,7 +37,7 @@ class Comparer
 
   # RM Importer #
 
-  def rm_properties
+  def rm_props
     rm_importer.import
   end
 
@@ -36,12 +47,13 @@ class Comparer
 
   # Partner Importer #
 
-  def partner_properties
+  def partner_props
    partner_importer.import
   end
 
   def partner_importer
     @importer ||= partner_namespace::Importer.new(city)
+    # @importer ||= partner_namespace::Importer.new(city)
   end
 
   def partner_namespace
@@ -124,7 +136,7 @@ class Comparer
 
   def summary_hash
     {
-      :type => "Rome - #{partner_name.capitalize} Search Result Title Comparison",
+      :type => "#{city.capitalize} - #{partner_name.capitalize} Search Result Title Comparison",
       :date => Date.today,
       "number_of_#{partner_name}_properties".to_sym => number_of_partner_properties,
       :number_of_rm_properties => number_of_rm_properties,

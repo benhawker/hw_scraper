@@ -1,3 +1,7 @@
+# Client: makes the connection to the partner site.
+#
+# The +Client+ class is returning a +Mechanize+ page object which will be utilized by the Importer.
+
 class Client
   CITIES = YAML::load(File.open(File.join('config', 'cities.yml')))
 

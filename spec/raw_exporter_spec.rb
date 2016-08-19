@@ -5,7 +5,7 @@ RSpec.describe RawExporter do
 
   let(:partner) { "tujia" }
   let(:city) { "london" }
-  subject { described_class.new(partner, output) }
+  subject { described_class.new(partner, city, output) }
 
   describe "#export" do
     before do

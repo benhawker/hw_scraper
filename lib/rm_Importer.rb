@@ -1,5 +1,20 @@
-# Read zh title from the RM database via a CSV we will regularly output.
-# CSV will contain room_id, city (string), property title (in English)
+# RmImporter: the RmImporter class reads from the specified csv stored at
+#     +/properties/partner_name/properties.csv+
+#
+# The RmImporter will read the room_id, city and property_title in the given language.
+#
+# The CSV must be formed like so with the following headers:
+#    room_id,city,title
+#    246147,rome,St. Peter Awesome Family Apartment
+#    338741,rome,Penthouse + Eagle Eye Attic Combo
+#
+# This file must be updated prior to running the script to synchronise expected properties vs. ones we find on partner sites.
+#
+# Usage:
+#
+#   RmImporter.new("tujia", "london").import
+#
+# The +RmImporter+ class then makes the property_titles array (of hashes) available to the +Comparer+ class.
 
 class RmImporter
   attr_reader :partner_name, :city, :property_titles

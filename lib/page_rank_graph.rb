@@ -1,3 +1,15 @@
+# PageRankGraph: the PageRankGraph class exports a graph utilising the magnificent Gruff gem.
+#
+# Usage:
+#   PageRankGraph.new(partner_name, city, counts, rooms_per_page).import
+#   PageRankGraph.new("tujia", "london", {1=>1, 2=>4, 3=>7}, 20).import
+#
+# The +Comparer+ class instantiates this class providing the counts hash.
+# The counts hash contains a simple count of the page number (as the key) and the number of rm properties found as the value.
+#
+# We require the number of `rooms_per_page` to scale the y axis appropriately.
+# We used the size of the `counts` hash to scale the graph most appropriately.
+
 class PageRankGraph
   PIXEL_WIDTH = 1200
 
