@@ -24,15 +24,23 @@ class Comparer
 
   private
 
+  # RM Importer #
+
   def rm_properties
-    RmImporter.new(partner_name, city).import
+    rm_importer.import
   end
+
+  def rm_importer
+    RmImporter.new(partner_name, city)
+  end
+
+  # Partner Importer #
 
   def partner_properties
-   importer.import
+   partner_importer.import
   end
 
-  def importer
+  def partner_importer
     @importer ||= partner_namespace::Importer.new(city)
   end
 
@@ -40,21 +48,25 @@ class Comparer
     partner_name.capitalize.constantize
   end
 
+  # Send various outputs to the exporter classes #
+
   def export_summary
     Summarizer.new(partner_name, summary_hash).export
   end
 
   def export_page_ranking(counts_with_formatting)
-    PageRankExporter.new(partner_name, counts_with_formatting).export
+    PageRankExporter.new(partner_name, city, counts_with_formatting).export
   end
 
   def export_page_rank_graph(counts)
-    PageRankGraph.new(partner_name, counts, importer.rooms_per_page).build
+    PageRankGraph.new(partner_name, city, counts, rooms_per_page).build
   end
 
   def export_raw(output)
-    RawExporter.new(partner_name, output).export
+    RawExporter.new(partner_name, city, output).export
   end
+
+  # Compare and calculate the outputs that the exporter classes accept as inputs #
 
   def found
     found_count = 0
@@ -106,6 +118,10 @@ class Comparer
     ((number_of_rm_properties_found.to_f / number_of_partner_properties.to_f) * 100).round(2)
   end
 
+  def rooms_per_page
+    partner_importer.rooms_per_page
+  end
+
   def summary_hash
     {
       :type => "Rome - #{partner_name.capitalize} Search Result Title Comparison",
@@ -122,13 +138,10 @@ class Comparer
   def counts_with_formatting
     counted = Hash.new(0)
     output.each { |h| counted[h[:page]] += 1 }
-
     # Delete Not Found before sorting
     deleted = counted.delete("Not Found")
-
     # Sort by the keys.
     counted = Hash[counted.sort_by{|k,v| k}]
-
     # Add the Not Found k,v pair back in
     counted["Not Found"] = deleted
 
@@ -149,14 +162,11 @@ class Comparer
   # Returns a hash with page as the key, properties found as the value {1=>1, 2=>0, 3=>0}
   def counts
     # 1 upto max page (made available from the relevant importer class)
-    counted = Hash[1.upto(importer.max_page).map {|i| [i, 0]}]
-
+    counted = Hash[1.upto(partner_importer.max_page).map {|i| [i, 0]}]
     # Delete Not Found - it's not needed for the graph.
     tmp = output.select { |h| h[:page] != "Not Found" }
-
     # Sum the counts in the counted hash
     tmp.each { |h| counted[h[:page].to_i] += 1 }
-
     #Return counted hash
     counted
   end

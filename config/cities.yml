@@ -13,18 +13,18 @@
   "singapore": "xinjiapo_gongyu_r104/"
 
   #Japan
-  "tokyo": "dongjing_gongyu_r77/"
-  "osaka": "daban_gongyu_r147/"
+  # "tokyo": "dongjing_gongyu_r77/"
+  # "osaka": "daban_gongyu_r147/"
 
   #Korea
-  "seoul": "shouer_gongyu_r129/"
-  "jeju island": "jizhoudao_gongyu_r162/"
+  # "seoul": "shouer_gongyu_r129/"
+  # "jeju island": "jizhoudao_gongyu_r162/"
 
   #Thailand
-  "pattaya": "batiya_gongyu_r41/"
-  "bangkok": "mangu_gongyu_r40/"
-  "chiang mai": "qingmai_gongyu_r128/"
-  "phuket": "pujidao_gongyu_r28/"
+  # "pattaya": "batiya_gongyu_r41/"
+  # "bangkok": "mangu_gongyu_r40/"
+  # "chiang mai": "qingmai_gongyu_r128/"
+  # "phuket": "pujidao_gongyu_r28/"
 
   #Taiwan & HK
   # "taipei": "taibei_gongyu_r138/"
