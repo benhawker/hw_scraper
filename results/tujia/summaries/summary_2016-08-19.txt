@@ -1,0 +1,8 @@
+type: London - Tujia Search Result Title Comparison
+date: 2016-08-19
+number_of_tujia_properties: 129
+number_of_rm_properties: 1421
+number_of_rm_properties_found: 35
+percentage_of_properties_found: 2.46
+percentage_of_rm_properties_out_of_total_on_tujia: 27.13
+

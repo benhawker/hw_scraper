@@ -1,0 +1,9 @@
+type: Rome - Homeaway Search Result Title Comparison
+date: 2016-08-19
+number_of_homeaway_properties: 6700
+number_of_rm_properties: 526
+number_of_rm_properties_found: 232
+percentage_of_properties_found: 44.11
+percentage_of_rm_properties_out_of_total_on_homeaway: 3.46
+
+
