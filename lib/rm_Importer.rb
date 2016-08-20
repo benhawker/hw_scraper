@@ -8,7 +8,8 @@
 #    246147,rome,St. Peter Awesome Family Apartment
 #    338741,rome,Penthouse + Eagle Eye Attic Combo
 #
-# This file must be updated prior to running the script to synchronise expected properties vs. ones we find on partner sites.
+# This file must be updated prior to running the script to synchronise
+# expected properties vs. ones we find on partner sites.
 #
 # Usage:
 #
@@ -25,7 +26,7 @@ class RmImporter
     @property_titles = []
   end
 
-  # Requires periodic import of properties.csv for each partner added.
+  # Requires periodic import of properties.csv into prorerties/partner_name/ for each partner added.
   def import
     CSV.foreach(path, headers: true, quote_char: "|") do |record|
       if record['city'] == city.to_s

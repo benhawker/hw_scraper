@@ -1,0 +1,3 @@
+# gitignore the input and outputs.
+/properties/*
+/results/*
