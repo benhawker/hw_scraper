@@ -1,11 +1,11 @@
 # Scraping Page Rank Script
 
-A work in progress as of August 2016.
+Further development has now been moved into a private repo. This scraper is fully functional given the required inputs.
 
 This Ruby application tracks:
-  
+
   1) Visibility of Properties on Partner sites
-  
+
   2) Page Ranking of Properties on Partner sites
 
 For both components you will require an input file, which must be loaded into `properties/#{partner_name}/properties.csv`. The CSV should be formed as per the documentation in the +RmImporter+ class. See that class for details. The properties directory is gitignored.
@@ -53,7 +53,7 @@ To narrow down the scope of the report to less cities for a given partner make t
 ### Outputs:
 
 Currently the application is providing 4 outputs:
- 
+
   1) Page Rank Graph - see class `PageRankGraph`
 
   2) Page Ranking (raw) data - see class `PageRankExporter`
